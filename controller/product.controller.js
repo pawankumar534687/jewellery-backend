@@ -36,9 +36,11 @@ import data from "../config/data.js";
 //     })
 // }
 
-const insertdata = async (req,res) =>{
+const insertdata = async (req, res) => {
     const ins = await Product.insertMany(data)
-    res.status(200).json({message : "data save db succssfully"})
+    res.status(200).json({
+        message: "data save db succssfully"
+    })
 }
 
 const alldata = async (req, res) => {
@@ -47,17 +49,34 @@ const alldata = async (req, res) => {
 
 }
 
-const detaildProduct = async (req,res) =>{
-    const {id} = req.params
-   
-    
-    const detailed = await  Product.findById(id)
+const detaildProduct = async (req, res) => {
+    const {
+        id
+    } = req.params
+
+
+    const detailed = await Product.findById(id)
     res.json(detailed)
+}
+
+const findbycategory = async (req, res) => {
+    const {
+        category
+    } = req.params
+
+    const data = await Product.find({
+        category
+    })
+    res.json(data)
+
 }
 
 
 
 
-
-
-export {insertdata, alldata, detaildProduct}
+export {
+    insertdata,
+    alldata,
+    detaildProduct,
+    findbycategory
+}

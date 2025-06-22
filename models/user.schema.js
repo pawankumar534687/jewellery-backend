@@ -26,11 +26,14 @@ const UserSchema = mongoose.Schema({
       message: "Invalid phone number",
     }
   },
- 
+
   address: {
     type: String,
 
-  }
+  },
+  resetPasswordToken: String,
+  resetPasswordExpires: Date,
+
 
 });
 

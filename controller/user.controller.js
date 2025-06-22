@@ -1,5 +1,5 @@
 import User from "../models/user.schema.js";
-import ExpressError from "../utils/ExpressError.js";
+import ExpressError from "../utils/expressError.js";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 const signup = async (req, res, next) => {
@@ -48,7 +48,10 @@ const signup = async (req, res, next) => {
     res.status(200).json({
         message: "Signup successful",
         token,
-       c
+        user: {
+            id: user._id,
+           
+        }
 
     })
 
@@ -92,13 +95,16 @@ const login = async (req, res, next) => {
         token,
         user: {
             id: user._id,
-            email: user.email,
-            firstname: user.firstname,
-            lastname: user.lastname
+           
         }
 
     })
 }
+
+
+
+
+
 
 export {
     signup,

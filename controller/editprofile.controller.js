@@ -6,7 +6,7 @@ const edit = async (req, res, next) => {
     const {
         id
     } = req.params
-   
+
     const user = await User.findById(id)
     if (!user) {
         return next(new ExpressError(404, "User not Found"))
@@ -23,7 +23,7 @@ const saveprofile = async (req, res, next) => {
     const {
         id
     } = req.params
-   
+
     const {
         firstname,
         lastname,
@@ -55,8 +55,8 @@ const saveprofile = async (req, res, next) => {
             email: user.email,
             firstname: user.firstname,
             lastname: user.lastname,
-            phone:user.phone,
-            address:user.address
+            phone: user.phone,
+            address: user.address
         }
     });
 }
