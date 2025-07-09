@@ -3,8 +3,8 @@ import nodemailer from 'nodemailer';
 import crypto, {
     randomBytes
 } from 'crypto'
-import ExpressError from "../utils/expressError.js";
-import bcrypt from "bcrypt" 
+import ExpressError from "../utils/ExpressError.js";
+import bcrypt from "bcrypt"
 
 const forgotPassword = async (req, res, next) => {
     const {
@@ -33,12 +33,12 @@ const forgotPassword = async (req, res, next) => {
     const transporter = nodemailer.createTransport({
         service: "Gmail",
         auth: {
-            user: "pawankumar534687@gmail.com",
-            pass: "rgqc fmpe lqkj psll",
+            user: process.env.EMAIL,
+            pass: process.env.PASSWORD,
 
         },
     });
-  const resetUrl = `http://localhost:5173/reset-password/${token}`;
+    const resetUrl = `http://localhost:5173/reset-password/${token}`;
 
 
     const message = {
@@ -55,7 +55,7 @@ const forgotPassword = async (req, res, next) => {
 
 };
 
-const resetPassworod = async (req, res, next) => {
+const resetPassword = async (req, res, next) => {
     const token = req.params.token;
     const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
     const user = await User.findOne({
@@ -74,8 +74,8 @@ const resetPassworod = async (req, res, next) => {
 
 
     user.password = hasedpassword;
-    user.resetPasswordToken = undefined;
-    user.resetPasswordExpires = undefined;
+    user.resetPasswordToken = null;
+    user.resetPasswordExpires = null;
 
     await user.save();
 
@@ -85,10 +85,7 @@ const resetPassworod = async (req, res, next) => {
 
 }
 
-
-
-
-
 export {
-    forgotPassword,  resetPassworod
+    forgotPassword,
+    resetPassword
 }

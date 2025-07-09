@@ -13,6 +13,7 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: true,
     trim: true,
+    
     match: [/^\S+@\S+\.\S+$/, "Please enter a valid email address"],
   },
   password: {
@@ -26,15 +27,26 @@ const UserSchema = mongoose.Schema({
       message: "Invalid phone number",
     }
   },
+  img:{
+    type: String,
+    
+  },
 
   address: {
     type: String,
 
   },
+   role: {
+    type: String,
+    enum: ["user", "admin"],
+    default: "user",
+  },
   resetPasswordToken: String,
   resetPasswordExpires: Date,
 
 
+}, {
+  timestamps: true
 });
 
 const User = mongoose.model("User", UserSchema);

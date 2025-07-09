@@ -1,8 +1,12 @@
 import dotenv from "dotenv";
 dotenv.config();
-import { v2 as cloudinary } from "cloudinary";
-
-import { CloudinaryStorage } from "multer-storage-cloudinary";
+import {
+  v2 as cloudinary
+} from "cloudinary";
+import multer from "multer";
+import {
+  CloudinaryStorage
+} from "multer-storage-cloudinary";
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -10,12 +14,19 @@ cloudinary.config({
   api_secret: process.env.API_SECRET,
 });
 
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    folder: "airbnb",
-    formats: ["png", "jpg", "jpeg"],
-  },
-});
+const getUpload = (folderName) => {
+  const storage = new CloudinaryStorage({
+    cloudinary,
+    params: async (req, file) => {
+      return {
+        folder: folderName,
+        allowed_formats: ["jpeg", "png", "jpg", "webp", "jfif"],
+      };
+    },
+  });
 
-export { cloudinary, storage };
+  return multer({
+    storage
+  });
+}
+export default getUpload;
