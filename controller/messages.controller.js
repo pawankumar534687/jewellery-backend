@@ -1,5 +1,5 @@
 import Message from "../models/messages.schema.js";
-import ExpressError from "../utils/expressError.js";
+import ExpressError from "../utils/ExpressError.js"
 
 const message = async (req, res, next) => {
     const {
