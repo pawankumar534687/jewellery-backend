@@ -1,5 +1,5 @@
 import User from "../models/user.schema.js";
-import ExpressError from "../utils/expressError.js";
+import ExpressError from "../utils/ExpressError.js";
 
 
 const edit = async (req, res, next) => {
