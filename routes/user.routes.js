@@ -6,9 +6,9 @@ import { getusers } from "../controller/user.controller.js"
 import { adminLogin } from "../controller/user.controller.js"
 import authMiddleware from "../middlewares/verifyToken.js"
 
-router.post("/signup", asyncWrap(signup ))
-router.post("/login", asyncWrap(login ))
-router.get("/getusers", authMiddleware, asyncWrap(getusers ))
-router.post("/admin-login", asyncWrap(adminLogin ))
+router.post("/signup", asyncWrap(signup))
+router.post("/login", asyncWrap(login))
+router.get("/getusers", authMiddleware, asyncWrap(getusers))
+router.post("/admin-login", asyncWrap(adminLogin))
 
 export default router;

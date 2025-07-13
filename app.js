@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from "dotenv";
 import cors from 'cors';
-import { Client } from "@elastic/elasticsearch";
+// import { Client } from "@elastic/elasticsearch";
 
 import dbConnections from './config/db.js';
 import user from "./routes/user.routes.js";
@@ -46,7 +46,7 @@ app.use(cors({
 }));
 
 
-export const elasticClient = new Client({ node: "http://localhost:9200" });
+// export const elasticClient = new Client({ node: "http://localhost:9200" });
 
 app.use("/api", user);
 app.use("/api", product);
