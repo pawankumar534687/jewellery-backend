@@ -23,7 +23,7 @@ app.use(express.json());
 
 
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:5174'], 
+    origin: ['https://jewellery-project-z6a4.onrender.com', 'https://jewellery-admin-9mo1.onrender.com'], 
     methods: ['GET', 'POST', 'PUT', 'DELETE']
    
 }));
